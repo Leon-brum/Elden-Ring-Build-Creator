@@ -1,17 +1,53 @@
-import { Table, Column, Model, DataType } from 'sequelize-typescript';
+import {
+  DataTypes,
+  Model,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+} from 'sequelize';
+import db from '.';
 
-@Table
-export class User extends Model {
-  @Column({
-    type: DataType.STRING,
-    allowNull: false
-  })
-  username!: string;
+class User extends Model<InferAttributes<User>,
+InferCreationAttributes<User>>{
+  declare id: CreationOptional<number>;
 
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-    unique: true
-  })
-  email!: string;
+  declare name: string;
+
+  declare role: string;
+
+  declare email: string;
+
+  declare password: string;
 }
+
+User.init({
+  id: {
+    allowNull: false,
+    primaryKey: true,
+    autoIncrement: true,
+    type: DataTypes.INTEGER.UNSIGNED
+  },
+  name: {
+    allowNull: false,
+    type: DataTypes.STRING
+  },
+  email: {
+    allowNull: false,
+    type: DataTypes.STRING
+  },
+  password: {
+    allowNull: false,
+    type: DataTypes.STRING
+  },
+  role: {
+    allowNull: false,
+    type: DataTypes.STRING
+  }
+}, {
+  sequelize: db,
+  underscored: true,
+  modelName: 'users',
+  timestamps: false,
+})
+
+export default User;
