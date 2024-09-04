@@ -18,30 +18,35 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      upgrade_material: {
+      forgingStone: {
         allowNull: false,
-        type: Sequelize.STRING,
+        field: 'forging_stone',
+        type: Sequelize.ENUM('standard', 'somber'),
       },
       weight: {
         allowNull: false,
-        type: Sequelize.FLOAT,
+        type: Sequelize.DECIMAL(5, 2),
       },
-      passive_effect: {
-        type: Sequelize.STRING,
-        allowNull: true,
+      passive: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
       },
-      // tipos de dano
-      ...['physical', 'magic', 'fire', 'lightning', 'holy'].reduce((acc, type) => ({
-        ...acc,
-        [`${type}_damage`]: { allowNull: false, type: Sequelize.INTEGER },
-        [`${type}_defense`]: { allowNull: false, type: Sequelize.INTEGER },
-      }), {}),
-      // requerimentos e escalonamento
-      ...['strength', 'dexterity', 'intelligence', 'faith', 'arcane'].reduce((acc, attr) => ({
-        ...acc,
-        [`${attr}_requirement`]: { allowNull: false, type: Sequelize.INTEGER },
-        [`${attr}_scaling`]: { allowNull: false, type: Sequelize.STRING },
-      }), {}),
+      damage: {
+        allowNull: false,
+        type: Sequelize.JSON,
+      },
+      defense: {
+        allowNull: false,
+        type: Sequelize.JSON,
+      },
+      requirements: {
+        allowNull: false,
+        type: Sequelize.JSON,
+      },
+      scaling: {
+        allowNull: false,
+        type: Sequelize.JSON,
+      },
     });
   },
 

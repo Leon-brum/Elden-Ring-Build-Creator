@@ -31,6 +31,7 @@ Weapon.init({
   type: { allowNull: false, type: DataTypes.STRING(50) },
   forgingStone: {
     allowNull: false,
+    field: 'forging_stone',
     type: DataTypes.ENUM('standard', 'somber'),
   },
   damage: { allowNull: false, type: DataTypes.JSON },
