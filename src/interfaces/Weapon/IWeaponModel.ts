@@ -3,7 +3,7 @@ import { ID } from '..';
 
 export interface IWeaponModel {
     findAll(): Promise<IWeapon[]>,
-    // findById(id: ID): Promise<IWeapon | null>,
+    findById(id: ID): Promise<IWeapon | null>,
     // createWeapon(
     //     name: IWeapon['name'],
     //     type: IWeapon['type'],

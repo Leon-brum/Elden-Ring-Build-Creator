@@ -1,4 +1,5 @@
 import Weapon from '../database/models/Weapon'; 
+import { ID } from '../interfaces';
 import IWeapon from '../interfaces/Weapon/IWeapon';
 import { IWeaponModel } from '../interfaces/Weapon/IWeaponModel';
 
@@ -21,5 +22,24 @@ export default class WeaponModel implements IWeaponModel {
         passive: weapon.passive,
       };
     });
+  }
+
+  async findById(id: number): Promise<IWeapon | null> {
+    const weapon = await this.model.findByPk(id);
+
+    if (!weapon) return null;
+    
+    return {
+      id: weapon.id,
+      name: weapon.name,
+      type: weapon.type,
+      forgingStone: weapon.forgingStone as 'standard' | 'somber',
+      damage: weapon.damage as IWeapon['damage'],
+      defense: weapon.defense as IWeapon['defense'],
+      requirements: weapon.requirements as IWeapon['requirements'],
+      scaling: weapon.scaling as IWeapon['scaling'],
+      weight: weapon.weight,
+      passive: weapon.passive,
+    };
   }
 }

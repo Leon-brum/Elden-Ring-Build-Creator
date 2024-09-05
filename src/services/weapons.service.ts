@@ -10,4 +10,12 @@ export default class WeaponService {
     const weapons = await this.weaponModel.findAll();
     return {status: 'SUCCESSFUL', data: weapons};
   }
+
+  public async getByIdWeapon(id: number): Promise<ServiceResponse<IWeapon | null>> {
+    const weapon = await this.weaponModel.findById(id)
+    if(!weapon) return {status: "NOT_FOUND", data: {
+      message: 'Arma não encontrada!'
+    }}
+    return { status: "SUCCESSFUL", data: weapon }
+  }
 }

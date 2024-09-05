@@ -8,5 +8,8 @@ const router = Router();
 router.get('/',
   (req: Request, res: Response) => weaponController.getAllWeapons(req, res)
 );
+router.get('/:id',
+  (req: Request, res:Response) => weaponController.getByIdWeapon(req, res)
+);
 
 export default router;
