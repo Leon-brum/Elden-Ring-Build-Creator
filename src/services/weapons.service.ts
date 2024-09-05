@@ -18,4 +18,20 @@ export default class WeaponService {
     }}
     return { status: "SUCCESSFUL", data: weapon }
   }
+
+  public async createWeapon(name: IWeapon['name'], type: IWeapon['type'], forgingStone: IWeapon['forgingStone'], damage: IWeapon['damage'], defense: IWeapon['defense'], requirements: IWeapon['requirements'], scaling: IWeapon['scaling'], weight: IWeapon['weight'], passive: IWeapon['passive']): Promise<ServiceResponse<IWeapon>> {
+    const weapon = await this.weaponModel.createWeapon(
+      name,
+      type,
+      forgingStone,
+      damage,
+      defense,
+      requirements,
+      scaling,
+      weight,
+      passive
+    )
+
+    return { status: "CREATE", data: weapon }
+  }
 }
