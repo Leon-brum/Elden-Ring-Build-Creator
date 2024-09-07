@@ -15,9 +15,9 @@ export interface IWeaponModel {
         weight: IWeapon['weight'],
         passive: IWeapon['passive']
     ): Promise<IWeapon>,
-    // updateWeapon(
-    //     id: ID,
-    //     updateData: Partial<IWeapon>
-    // ): Promise<IWeapon | null>, 
+    updateWeapon(
+        id: ID,
+        updates: Partial<IWeapon>
+    ): Promise<IWeapon | null>,
     // deleteWeapon(id: ID): Promise<boolean>
 }

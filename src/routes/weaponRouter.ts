@@ -14,5 +14,8 @@ router.get('/:id',
 router.post('/',
   (req: Request, res: Response) => weaponController.createWeapon(req, res)
 )
+router.put('/:id',
+  (req: Request, res:Response) => weaponController.updateWeapon(req, res)
+)
 
 export default router;

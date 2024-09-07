@@ -68,4 +68,25 @@ export default class WeaponModel implements IWeaponModel {
       passive: newWeapon.passive,
     };
   }
+
+  async updateWeapon(id: ID, updates: Partial<IWeapon>): Promise<IWeapon | null> {
+    const weapon = await this.model.findByPk(id);
+
+    if (!weapon) return null;
+
+    await weapon.update(updates);
+
+    return {
+      id: weapon.id,
+      name: weapon.name,
+      type: weapon.type,
+      forgingStone: weapon.forgingStone as 'standard' | 'somber',
+      damage: weapon.damage as IWeapon['damage'],
+      defense: weapon.defense as IWeapon['defense'],
+      requirements: weapon.requirements as IWeapon['requirements'],
+      scaling: weapon.scaling as IWeapon['scaling'],
+      weight: weapon.weight,
+      passive: weapon.passive,
+    };
+  }
 }

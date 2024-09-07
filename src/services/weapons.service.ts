@@ -34,4 +34,17 @@ export default class WeaponService {
 
     return { status: "CREATE", data: weapon }
   }
+
+  public async updateWeapon(
+    id: number,
+    updates: Partial<IWeapon>
+  ): Promise<ServiceResponse<IWeapon | ServiceMessage>> {
+    const updatedWeapon = await this.weaponModel.updateWeapon(id, updates);
+
+    if (!updatedWeapon) {
+      return { status: "NOT_FOUND", data: { message: 'Arma não encontrada!' } };
+    }
+
+    return { status: "SUCCESSFUL", data: updatedWeapon };
+  }
 }

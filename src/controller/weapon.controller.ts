@@ -49,6 +49,22 @@ export default class WeaponController {
     } catch (error) {
       return res.status(500).json({ message: `Erro interno: ${error}` });
     }
-   
+  }
+
+  public async updateWeapon(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    const updates = req.body;
+
+    try {
+      const serviceResponse = await this.weaponService.updateWeapon(Number(id), updates);
+
+      if (serviceResponse.status !== "SUCCESSFUL") {
+        return res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
+      }
+
+      return res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
+    } catch (error) {
+      return res.status(500).json({ message: `Erro interno: ${error}` });
+    }
   }
 }
