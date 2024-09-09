@@ -89,4 +89,11 @@ export default class WeaponModel implements IWeaponModel {
       passive: weapon.passive,
     };
   }
+
+  async deleteWeapon(id: ID): Promise<boolean> {
+    const rowsDeleted = await this.model.destroy({
+      where: { id }
+    })
+    return rowsDeleted > 0;
+  }
 }

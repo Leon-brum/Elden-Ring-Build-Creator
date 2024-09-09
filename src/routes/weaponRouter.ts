@@ -17,5 +17,8 @@ router.post('/',
 router.put('/:id',
   (req: Request, res:Response) => weaponController.updateWeapon(req, res)
 )
+router.delete('/:id',
+  (req: Request, res: Response) => weaponController.deleteWeapon(req, res)
+)
 
 export default router;

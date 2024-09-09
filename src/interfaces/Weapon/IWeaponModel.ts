@@ -19,5 +19,5 @@ export interface IWeaponModel {
         id: ID,
         updates: Partial<IWeapon>
     ): Promise<IWeapon | null>,
-    // deleteWeapon(id: ID): Promise<boolean>
+    deleteWeapon(id: ID): Promise<boolean>
 }

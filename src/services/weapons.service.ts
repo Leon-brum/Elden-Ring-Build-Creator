@@ -47,4 +47,10 @@ export default class WeaponService {
 
     return { status: "SUCCESSFUL", data: updatedWeapon };
   }
+
+  public async deleteWeapon(id:number): Promise<ServiceResponse<ServiceMessage>>{
+    const exist = await this.weaponModel.deleteWeapon(id);
+    if (!exist) return { status:'NOT_FOUND', data: { message: 'Id não encontrado' } }
+    return { status: "SUCCESSFUL", data: { message:'Arma deletada' } }
+  }
 }
